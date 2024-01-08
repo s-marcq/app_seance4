@@ -54,3 +54,8 @@ def get_pays(id):
     nouveau_pays = Country.query.get({"id": id})
     return render_template("pages/generique.html", donnees = [nouveau_pays])
 
+@app.route("/suppression_pays/<string:id>") #supprimer pays
+def suppr_pays(id):
+    Country.query.filter(id== 'ay').delete()
+    db.session.commit()
+    return "OK"
