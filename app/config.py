@@ -7,4 +7,4 @@ dotenv.load_dotenv(os.path.join(BASE_DIR, '.env'))
 class Config():
     DEBUG = os.environ.get("DEBUG")
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
-    PAYS_PER_PAGE = int(os.environ.get("PAYS_PER_PAGE"))
+    PAYS_PER_PAGE = int(os.environ.get("PAYS_PER_PAGE")) # car per_page prend de l'integer

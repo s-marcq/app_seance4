@@ -59,3 +59,11 @@ def suppr_pays(id):
     Country.query.filter(id== 'ay').delete()
     db.session.commit()
     return "OK"
+
+@app.route("/pays_pagination/<int:page>")
+def pays_pagination(page):
+    donnees = []
+
+    query =  Country.query
+    tous_resultats = query.paginate(page=page, per_page=app.config["PAYS_PER_PAGE"]) # ici per_page=10
+    return render_template("pages/pays_pagination.html", donnees=tous_resultats, sous_titre="Tous les pays")
