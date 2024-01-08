@@ -41,3 +41,16 @@ def pays_differents_de_souverain():
 def condition_or_autre_condition():
     donnees = Country.query.filter(or_(Country.type == 'sovereign', Country.id == 'ay'))
     return render_template("pages/generique.html", donnees = donnees)
+
+@app.route("/ajout_pays/<string:id>/<string:name>/<string:type>/<string:rapide_description>") #
+def ajout_pays(id, name, type, rapide_description):
+    nouveau_pays = Country(id=id, name=name, type=type, Introduction = rapide_description)
+    db.session.add(nouveau_pays)
+    db.session.commit()
+    return "OK"
+
+@app.route("/get_pays/<string:id>") # renvoyer tous les pays (normalement un seul) correspondant à l'id fourni
+def get_pays(id):
+    nouveau_pays = Country.query.get({"id": id})
+    return render_template("pages/generique.html", donnees = [nouveau_pays])
+
