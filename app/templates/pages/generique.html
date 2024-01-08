@@ -1,0 +1,35 @@
+{% extends "partials/conteneur.html" %}
+
+{% block body %}
+
+{%if donnees%}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for pays in donnees%}
+        <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{pays.name}}</td>
+            <td>{{pays.type}}</td>
+            <td>{{pays.Introduction}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+{%endif%}
+{% endblock %}
+
+<!--
+    les données reçues dans le template arriveront par le paramètre donnees
+    le format des données est le suivant : [<Objet 1>, <Objet 2>, etc.], où est un objet remontant de l'ORM
+    rendre les données sous forme de tableau, avec seulement trois colonnes nom, type, description
+    les valeurs de ces colonnes seront les suivantes : {{pays.name}}, {{pays.type}}, {{pays.Introduction}}
+-->
